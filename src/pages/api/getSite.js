@@ -1,5 +1,5 @@
-import puppeteer from 'puppeteer'
-import chrome from 'chrome-aws-lambda';
+const puppeteer = require("puppeteer-core");
+const chrome = require("chrome-aws-lambda");
 
 const getLinks = async (page, url, depth, maxDepth, baseUrl) => {
   try {
@@ -37,7 +37,7 @@ export default async function (req, res) {
 
   const browser = await puppeteer.launch({
     args: chrome.args,
-    executablePath: chrome.executablePath,
+    executablePath: await chrome.executablePath,
     headless: chrome.headless
 
   })
