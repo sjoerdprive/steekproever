@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer'
+import chrome from 'chrome-aws-lambda';
 
 const getLinks = async (page, url, depth, maxDepth, baseUrl) => {
   try {
@@ -35,7 +36,9 @@ export default async function (req, res) {
   console.log('baseurl', baseUrl)
 
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: chrome.args,
+    executablePath: chrome.executablePath,
+    headless: chrome.headless
 
   })
   const page = await browser.newPage()
