@@ -46,14 +46,14 @@ export default async function (req, res) {
 
   const uniqueLinks = [...new Set(allLinks)]
 
-  const featuredPages = uniqueLinks.map(async uniqLink => {
-    await page.goto(uniqLink.url);
-    const title = await page.title();
+  // const featuredPages = uniqueLinks.map(async uniqLink => {
+  //   await page.goto(uniqLink.url);
+  //   const title = await page.title();
 
-    return { ...uniqLink, title: title };
-  })
+  //   return { ...uniqLink, title: title };
+  // })
 
 
   browser.close()
-  res.status(200).json(featuredPages || "no links")
+  res.status(200).json(uniqueLinks || "no links")
 }
