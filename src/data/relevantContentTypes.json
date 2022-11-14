@@ -1,0 +1,5 @@
+[
+  { "label": "Tabel", "name": "table" },
+  { "label": "Video", "name": "iframe" },
+  { "label": "Formulier", "name": "form" }
+]
