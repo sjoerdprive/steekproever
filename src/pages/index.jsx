@@ -1,23 +1,23 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 // import 'bootstrap/dist/js/bootstrap.bundle';
 
-import { useState } from 'react';
-import PageList from 'src/components/PageList';
-import Sampler from 'src/components/Sampler';
-import SiteFinder from '../components/SiteFinder';
-import SampleChecklist from 'src/components/SampleChecklist';
+import { useEffect, useState } from "react";
+import PageList from "src/components/PageList";
+import Sampler from "src/components/Sampler";
+import SiteFinder from "../components/SiteFinder";
+import SampleChecklist from "src/components/SampleChecklist";
 
 export default function Home() {
-  const [pages, setPages] = useState(undefined);
+  const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sample, setSample] = useState([]);
 
   const addToSample = (item) => {
-    setSample((prev) => prev.concat(item));
+    setSample((prev) => [...prev.concat(item)]);
   };
 
   const removeFromSample = (item) => {
-    setSample((prev) => prev.filter((o) => o !== item));
+    setSample((prev) => [...prev.filter((o) => o !== item)]);
   };
 
   return (
@@ -27,7 +27,10 @@ export default function Home() {
       <div className="row w-100">
         <div className="col-6 d-flex flex-column gap-3">
           <SiteFinder
-            onSubmit={() => setLoading(true)}
+            onSubmit={() => {
+              setLoading(true);
+              setPages([]);
+            }}
             onLoad={async (loadedPages) => {
               setLoading(false);
               setPages(await loadedPages);
