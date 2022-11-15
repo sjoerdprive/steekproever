@@ -1,4 +1,4 @@
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer");
 const chrome = require("chrome-aws-lambda");
 
 const getLinks = async (page, url, depth, maxDepth, baseUrl) => {
